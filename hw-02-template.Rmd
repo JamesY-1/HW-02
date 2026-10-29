@@ -165,7 +165,32 @@ The scatter plot shows the relationship between running distance and average spe
 ## Exercise 4
 
 ```{r ex4, out.width = "80%"}
-# Write your code to answer exercise 4 here
+strava_runs%>%
+  group_by(gender) %>%
+  summarise(
+    mean_distance = mean(distance..m.,na.rm = TRUE)/1000,
+    mean_time = mean (elapsed.time..s.,na.rm = TRUE)/60
+  )%>%
+  pivot_longer(
+    cols = c(mean_distance, mean_time),
+    names_to = "measure",
+    values_to = "average"
+  ) %>%
+  mutate(
+    measure = recode(
+      measure,
+      mean_distance = "Average distance (km)",
+      mean_time = "Average elapsed time (min)"
+    )
+  )%>%
+  ggplot(aes(x = gender, y = average))+
+  geom_col()+
+  facet_wrap(~ measure, scales= "free_y")+
+  labs(
+    title = "Average Running Distance and Time by Gender",
+    x = "Gender",
+    y = "Average value"
+  )
 
 
 
@@ -174,8 +199,7 @@ The scatter plot shows the relationship between running distance and average spe
 ```
 
 
-_Write your text to answer exercise 4b here (Please delete this message before submission!)_
-
+The bar charts compare the mean running distance and mean elapsed time by gender. Male runners have a higher mean running distance than demale runners in this dataset. However, the mean elapsed times for male and female runners are very similar, with females having a silghtly higher mean. These are decriptive comparsions of the recorded runs and do not establish that gendeer causes the difference.
 
 
 
