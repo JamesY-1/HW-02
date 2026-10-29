@@ -159,7 +159,7 @@ data_speed %>%
 
 ```
 
-
+The scatter plot shows the relationship between running distance and average speed for short-distance and long-distance runners. The trend lines suggest a negative relationship between distance speed in both groups, particularly for short-distance runners. The negative trend is weaker for long-distance runners. However, the points are widely scattered and the two groups overlap considerably, indicating substantial variation in speed at similar distances. These results show an association rather than a causal relationship.
 
 
 ## Exercise 4
